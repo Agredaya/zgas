@@ -7,7 +7,7 @@ router.route("/")
 .get(productCrontrollers.getProducts)
 .post(productCrontrollers.insertProducts)
 
-router.route("/")
+router.route("/:id")
 .put(productCrontrollers.updateProducts)
 .delete(productCrontrollers.deleteProducts)
 

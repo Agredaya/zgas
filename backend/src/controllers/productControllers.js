@@ -8,17 +8,18 @@ productoControllers.getProducts =async(req,res)=>{
 }
 productoControllers.insertProducts =async(req,res)=>{
     const {name,desciption, price, stock} = req.body;
-    const newProduct = new poroductModel ({name,desciption, price, stock}) 
+    const newProduct = new productModel ({name,desciption, price, stock}) 
     await newProduct.save()
-    res,json({Message:"products save"})
+    res.json({message:"products save"})
 }
 productoControllers.deleteProducts =async(req,res)=>{ 
-    await poroductModel.findByIdAndDelete(req.params.id)
+    const santiago = await productModel.findByIdAndDelete(req.params.id)
+    if (!santiago)res.json({message: "no se encontro el santiago"});
     res.json({message:"products delete"})
 }
 productoControllers.updateProducts= async (req,res)=>{
     const{name,desciption,price,stock}=req.body;
-    const updateProducts=await poroductModel.findByIdAndUpdate(req.params.id,{
+    const updateProducts=await productModel.findByIdAndUpdate(req.params.id,{
         name,desciption,price,stock},{new:true});
         res.json({message:"products update"});
 }
